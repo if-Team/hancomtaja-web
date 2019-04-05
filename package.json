@@ -4,7 +4,8 @@
   "description": "A web version port of HNCTT 2007",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "parcel index.html"
   },
   "repository": {
     "type": "git",
@@ -24,5 +25,6 @@
   "homepage": "https://github.com/if-Team/hancomtaja-web#readme",
   "devDependencies": {
     "parcel-bundler": "^1.12.3"
-  }
+  },
+  "dependencies": {}
 }
