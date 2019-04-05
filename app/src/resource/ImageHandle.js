@@ -4,7 +4,7 @@ class ImageHandle {
   constructor () {
     this.ready = false;
     this._image = document.createElement('image');
-    this._image.addEventListener('load', () => { this.ready = true });
+    this._image.addEventListener('load', () => { this.ready = true; });
 
     if (this._opt.src) this._image.src = this._opt.src;
   }
