@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/if-Team/hancomtaja-web#readme",
   "devDependencies": {
+    "babel-polyfill": "^6.26.0",
     "parcel-bundler": "^1.12.3"
   },
   "dependencies": {}
