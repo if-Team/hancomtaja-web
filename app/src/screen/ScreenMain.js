@@ -25,7 +25,7 @@ class ScreenMain extends Screen {
 	 * Fire when this screen appear screen
 	 * @override
 	 */
-	onShow() {
+	async onShow() {
 
 	}
 
@@ -33,7 +33,7 @@ class ScreenMain extends Screen {
 	 * Fire when this screen disappear screen
 	 * @override
 	 */
-	onHide() {
+	async onHide() {
 
 	}
 }

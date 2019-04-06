@@ -1,5 +1,6 @@
 import 'babel-polyfill';
-import ScreenMain from './screen/ScreenMain.js';
+import ScreenIndex from './screen/ScreenIndex';
+import ScreenMain from './screen/ScreenMain';
 
 const isDev = ('' + process.env.NODE_ENV).toLowerCase() !== 'production';
 
@@ -12,17 +13,38 @@ class Taja {
     this.screens = {};
     this.currentScreenName = null;
 
+    this.containerElement = document.createElement('div');
     this.canvas = document.createElement('canvas');
     this.ctx = this.canvas.getContext('2d');
 
     this._bindedDoTick = this._doTick.bind(this);
+    this.pauseTicking = false;
   }
 
   /** async init function */
   async init() {
-    document.body.appendChild(this.canvas);
+    Object.assign(this.containerElement.style, {
+      position: 'fixed',
+      left: 0,
+      top: 0,
+      width: '100%',
+      height: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: 'black'
+    });
+
+    this.canvas.width = 800;
+    this.canvas.height = 600;
+
+    this.containerElement.appendChild(this.canvas);
+    document.body.appendChild(this.containerElement);
+
+    this.screens.index = new ScreenIndex(this);
     this.screens.main = new ScreenMain(this);
-    this.changeScreen('main');
+
+    await this.changeScreen('index');
     this.startAnimationFrame();
   }
 
@@ -35,13 +57,14 @@ class Taja {
    * Change Taja instance's screen
    * @param {string} name - Screen name
    */
-  // TODO: need asnyc?
-  changeScreen(name) {
+  async changeScreen(name) {
     if (!this.screens[name])
       throw new Error('Unknown screen name: ' + name);
-    if (this.currentScreenName) this.screen.onHide();
+    this.pauseTicking = true;
+    if (this.currentScreenName) await this.screen.onHide();
     this.currentScreenName = name;
-    this.screen.onShow();
+    await this.screen.onShow();
+    this.pauseTicking = false;
   }
 
   /** Start ticking */
@@ -57,7 +80,7 @@ class Taja {
   /** fired by AnimationFrame */
   _doTick(delta) {
     this.startAnimationFrame();
-    this.screen.draw(delta, this.ctx);
+    if (!this.pauseTicking) this.screen.draw(delta, this.ctx);
   }
 }
 

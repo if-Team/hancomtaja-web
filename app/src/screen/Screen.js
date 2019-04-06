@@ -15,10 +15,10 @@ class Screen {
   draw (delta, ctx) {}
 
   /** Override this method */
-  onShow () {}
+  async onShow () {}
 
   /** Override this method */
-  onHide () {}
+  async onHide () {}
 }
 
 module.exports = Screen;

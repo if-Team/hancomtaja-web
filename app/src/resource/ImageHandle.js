@@ -5,8 +5,6 @@ class ImageHandle {
     this.ready = false;
     this._image = document.createElement('img');
     this._image.addEventListener('load', () => { this.ready = true; });
-
-    if (this._opt.src) this._image.src = this._opt.src;
   }
 
   /**
@@ -26,13 +24,23 @@ class ImageHandle {
    */
   async load(url) {
     this.ready = false;
-    this.image.src = url;
+    this._image.src = url;
 
     const that = this;
     return new Promise(function (resolve, reject) {
       that._image.addEventListener('load', event => { resolve(that, event); });
       that._image.addEventListener('error', event => { reject(event); });
     });
+  }
+
+  get width() {
+    if (!this.ready) throw new Error('ImageHandle not ready')
+    return this._image.naturalWidth;
+  }
+
+  get height() {
+    if (!this.ready) throw new Error('ImageHandle not ready')
+    return this._image.naturalHeight;
   }
 
   /**
