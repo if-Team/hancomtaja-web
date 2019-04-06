@@ -18,8 +18,20 @@ class ScreenManager {
 
     this.root = elem;
     this.root.appendChild(this.canvas);
+    Object.assign(this.root.style, {
+      position: 'fixed',
+      left: 0,
+      top: 0,
+      width: '100%',
+      height: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: 'black'
+    });
 
     this._bindedDoTick = this._doTick.bind(this);
+    this.pauseTicking = false;
   }
 
   /** async init function */
@@ -77,7 +89,7 @@ class ScreenManager {
   /** fired by AnimationFrame */
   _doTick(delta) {
     this.startAnimationFrame();
-    this.screen.draw(delta, this.ctx);
+    if(!this.pauseTicking) this.screen.draw(delta, this.ctx);
   }
 }
 
