@@ -1,21 +1,39 @@
 import Images from "../../images/screen/main/*.png";
 import Screen from './Screen';
 
+/** Taja's index screen */
 class ScreenMain extends Screen {
-  constructor() {
+  /**
+   * Create ScreenMain
+   * @param {Taja} taja - Main context
+   */
+  constructor(taja) {
     super();
-    this.profile = null;
   }
 
-  async init(profile) {
-    this.profile = profile;
+  /**
+   * Fire when this screen appear screen
+   * @override
+   */
+  async onShow() {
+
   }
 
-  draw(ctx) {
+  /**
+  * Draw screen
+   * @override
+   * @param {number} delta
+   * @param {CanvasRenderingContext2D} ctx
+   */
+  draw(delta, ctx) {
     this.resources.main.draw(ctx, 0, 0);
   }
 
-  async destroy() {
+  /**
+   * Fire when this screen disappear screen
+   * @override
+   */
+  async onHide() {
 
   }
 

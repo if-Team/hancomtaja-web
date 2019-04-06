@@ -15,7 +15,7 @@ class ImageHandle {
    * @param {string} url - Image url
    * @returns {ImageHandle}
    */
-  static async fromUrl (url) {
+  static async fromUrl(url) {
     const imageWrapper = new ImageHandle();
     return imageWrapper.load(url);
   }
@@ -25,7 +25,7 @@ class ImageHandle {
    * @param {string} url - Image url
    * @returns {Promise} Promise object represents the success of loading progress
    */
-  load (url) {
+  load(url) {
     this.ready = false;
 
     return new Promise((resolve, reject) => {
@@ -38,7 +38,7 @@ class ImageHandle {
   /**
    * Set image's 0x00ff00(green) pixel to transparency
    */
-  handleTransparency () {
+  handleTransparency() {
     if (!this.ready) {
       throw new Error('ImageWrapper not ready');
     }
@@ -70,7 +70,7 @@ class ImageHandle {
    * @param {number} x - Horizontal position (x coordinate) at which to place the image data in the destination canvas
    * @param {number} y -Vertical position (y coordinate) at which to place the image data in the destination canvas
    */
-  draw (ctx, x, y) {
+  draw(ctx, x, y) {
     if (this.handledImageData) {
       ctx.putImageData(this.handledImageData, x, y);
     } else {
