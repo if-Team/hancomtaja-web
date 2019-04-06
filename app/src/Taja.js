@@ -1,3 +1,4 @@
+import ScreenIndex from "./screen/ScreenIndex";
 import ScreenMain from "./screen/ScreenMain";
 import ScreenManager from "./screen/ScreenManager";
 

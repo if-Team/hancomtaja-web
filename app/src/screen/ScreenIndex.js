@@ -1,7 +1,6 @@
-const Screen = require('./Screen');
-const ImageHandle = require('../resource/ImageHandle');
-
+import ImageHandle from '../resource/ImageHandle';
 import ImageSplash from "../../images/info/splash.png";
+import Screen from './Screen';
 
 /** Taja's initialize screen */
 class ScreenIndex extends Screen {
@@ -22,7 +21,7 @@ class ScreenIndex extends Screen {
 
   get _resources() {
     return {
-      splash: this.ImageSplash
+      splash: ImageSplash
     };
   }
 }
