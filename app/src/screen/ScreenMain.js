@@ -12,6 +12,14 @@ class ScreenMain extends Screen {
   }
 
   /**
+   * Fire when this screen being initialized
+   * @override
+   */
+  async onCreate () {
+
+  }
+
+  /**
    * Fire when this screen appear screen
    * @override
    */

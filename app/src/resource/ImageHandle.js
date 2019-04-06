@@ -6,8 +6,6 @@ class ImageHandle {
     this._opt = opt;
     this._image = document.createElement('img');
     this._image.addEventListener('load', () => { this.ready = true; });
-
-    if (this._opt.src) this._image.src = this._opt.src;
   }
 
   /**
@@ -33,6 +31,16 @@ class ImageHandle {
       this._image.addEventListener('error', event => { reject(event); });
       this._image.src = url;
     });
+  }
+
+  get width() {
+    if (!this.ready) throw new Error('ImageHandle not ready')
+    return this._image.naturalWidth;
+  }
+
+  get height() {
+    if (!this.ready) throw new Error('ImageHandle not ready')
+    return this._image.naturalHeight;
   }
 
   /**
