@@ -14,6 +14,13 @@ class ScreenManager {
     this.canvas = document.createElement('canvas');
     this.canvas.width = 800;
     this.canvas.height = 600;
+    Object.assign(this.canvas.style, {
+      width: '100%',
+      paddingTop: '75%', // 4:3 aspect ratio
+      paddingBottom: '75%',
+      maxWidth: '800px',
+      maxHeight: '600px'
+    });
     this.ctx = this.canvas.getContext('2d');
 
     this.root = elem;
