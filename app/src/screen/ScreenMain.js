@@ -1,13 +1,27 @@
-const Screen = require('./Screen');
+import Images from "../../images/screen/main/*.png";
+import Screen from './Screen';
 
 class ScreenMain extends Screen {
-	constructor(profile) {
-		super();
-	}
+  constructor() {
+    super();
+    this.profile = null;
+  }
 
-	draw(ctx) {
-		
-	}
+  async init(profile) {
+    this.profile = profile;
+  }
+
+  draw(ctx) {
+    this.resources.main.draw(ctx, 0, 0);
+  }
+
+  async destroy() {
+
+  }
+
+  get _resources() {
+    return Images;
+  }
 }
 
-module.exports = ScreenMain;
+export default ScreenMain;

@@ -1,9 +1,10 @@
 /** Image loader and convertor for canvas */
 class ImageHandle {
   /** Create ImageHandle */
-  constructor () {
+  constructor (opt = {}) {
     this.ready = false;
-    this._image = document.createElement('image');
+    this._opt = opt;
+    this._image = document.createElement('img');
     this._image.addEventListener('load', () => { this.ready = true; });
 
     if (this._opt.src) this._image.src = this._opt.src;
@@ -24,14 +25,13 @@ class ImageHandle {
    * @param {string} url - Image url
    * @returns {Promise} Promise object represents the success of loading progress
    */
-  async load (url) {
+  load (url) {
     this.ready = false;
-    this.image.src = url;
 
-    const that = this;
-    return new Promise(function (resolve, reject) {
-      that._image.addEventListener('load', event => { resolve(that, event); });
-      that._image.addEventListener('error', event => { reject(event); });
+    return new Promise((resolve, reject) => {
+      this._image.addEventListener('load', event => { resolve(this, event); });
+      this._image.addEventListener('error', event => { reject(event); });
+      this._image.src = url;
     });
   }
 
@@ -79,4 +79,4 @@ class ImageHandle {
   }
 }
 
-module.exports = ImageHandle;
+export default ImageHandle;

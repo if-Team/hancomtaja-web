@@ -1,4 +1,5 @@
 node_modules
 *.swp
 dist
-app/res/images
+.cache
+
