@@ -1,3 +1,4 @@
+import ScreenMain from "./ScreenMain";
 import ImageHandle from '../resource/ImageHandle';
 import ImageSplash from "../../images/info/splash.png";
 import Screen from './Screen';
@@ -15,7 +16,31 @@ class ScreenIndex extends Screen {
 
   async onCreate () {}
 
-  async onShow () {}
+  async onShow () {
+    (async () => {
+      const loadStartAt = Date.now();
+      // Loading another screens
+      await this.app.manager.registerScreen('main', ScreenMain);
+      // await this.manager.registerScreen('practiceLocation', ScreenPracticeLocation);
+      // await this.manager.registerScreen('practiceWord', ScreenPracticeWord);
+      // await this.manager.registerScreen('practiceShort', ScreenPracticeShort);
+      // ...
+
+      // Minimum time for splash image
+      const leftover = (loadStartAt + 3000) - Date.now();
+      if (leftover > 0) {
+        setTimeout(() => {
+          this.app.manager.changeScreen('main').catch(err => {
+            // TODO: use global trap
+            console.error(err);
+          });
+        }, leftover);
+      } else await this.app.manager.changeScreen('main');
+    })().catch(err => {
+      // TODO: use global trap
+        console.error(err);
+    });
+  }
 
   async onHide () {}
 

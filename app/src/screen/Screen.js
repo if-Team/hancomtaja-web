@@ -2,7 +2,7 @@
 class Screen {
   /** Do not use this directly */
   constructor (taja) {
-    this.taja = taja;
+    this.app = taja;
     this.local = {};
     this.resources = {};
   }
