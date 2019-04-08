@@ -5,17 +5,25 @@ import Screen from './Screen';
 
 /** Taja's initialize screen */
 class ScreenIndex extends Screen {
+  /**
+   * Create ScreenIndex
+   * @param {Taja} taja - Main context
+   * @param {Object} profile - Current user's profile
+   */
   constructor(taja, profile) {
     super(taja, profile);
   }
 
-  draw (delta, ctx) {
-    const loadingImage = this.resources.splash;
-    loadingImage.draw(ctx, (800 - loadingImage.width) / 2, (600 - loadingImage.height) / 2);
-  }
-
+  /**
+   * Fire when this screen being initialized
+   * @override
+   */
   async onCreate () {}
 
+  /**
+   * Fire when this screen appear screen
+   * @override
+   */
   async onShow () {
     (async () => {
       const loadStartAt = Date.now();
@@ -42,8 +50,27 @@ class ScreenIndex extends Screen {
     });
   }
 
+  /**
+  * Draw screen
+   * @override
+   * @param {number} delta
+   * @param {CanvasRenderingContext2D} ctx
+   */
+  draw (delta, ctx) {
+    const loadingImage = this.resources.splash;
+    loadingImage.draw(ctx, (800 - loadingImage.width) / 2, (600 - loadingImage.height) / 2);
+  }
+
+  /**
+   * Fire when this screen disappear screen
+   * @override
+   */
   async onHide () {}
 
+  /**
+   * Get screen's resources
+   * @returns {Object}
+   */
   get _resources() {
     return {
       splash: ImageSplash
